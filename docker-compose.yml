@@ -1,0 +1,43 @@
+version: '3.7'
+
+volumes:
+  esdata1:
+    driver: local
+
+services:
+  admin-service:
+    ports:
+      - "9000:9000"
+    image: "admin-service:0.0.1-SNAPSHOT"
+
+  registry-service:
+    ports:
+      - "8761:8761"
+    image: "registry-service:0.0.1-SNAPSHOT"
+
+  config-service:
+    ports:
+      - "8082:8082"
+    image: "config-service:0.0.1-SNAPSHOT"
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.6.0
+    container_name: elasticsearch
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+
+  mongodb:
+    image: mongo:3.0.4
+    ports:
+      - "27017:27017"
+

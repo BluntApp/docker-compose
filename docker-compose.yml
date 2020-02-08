@@ -20,6 +20,26 @@ services:
       - "8082:8082"
     image: "config-service:0.0.1-SNAPSHOT"
 
+  gateway-service:
+    ports:
+      - "8765:8765"
+    image: "gateway-service:0.0.1-SNAPSHOT"
+
+  onboard-service:
+    ports:
+      - "9001:9001"
+    image: "onboard-service:0.0.1-SNAPSHOT"
+
+  follow-service:
+    ports:
+      - "9002:9002"
+    image: "follow-service:0.0.1-SNAPSHOT"
+
+  sms-service:
+    ports:
+      - "9003:9003"
+    image: "sms-service:0.0.1-SNAPSHOT"
+
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.6.0
     container_name: elasticsearch

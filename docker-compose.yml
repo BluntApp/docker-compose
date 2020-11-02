@@ -8,56 +8,95 @@ services:
   admin-service:
     ports:
       - "9000:9000"
-    image: "admin-service:0.0.1-SNAPSHOT"
+#    image: "admin-service:0.0.1-SNAPSHOT"
+    image: sundarapandiank/blunt:admin-service
 
   registry-service:
     ports:
       - "8761:8761"
-    image: "registry-service:0.0.1-SNAPSHOT"
+#    image: "registry-service:0.0.1-SNAPSHOT"
+    image: sundarapandiank/blunt:registry-service
 
   config-service:
     ports:
       - "8082:8082"
-    image: "config-service:0.0.1-SNAPSHOT"
-
-  gateway-service:
-    ports:
-      - "8765:8765"
-    image: "gateway-service:0.0.1-SNAPSHOT"
-
-  onboard-service:
-    ports:
-      - "9001:9001"
-    image: "onboard-service:0.0.1-SNAPSHOT"
-
-  follow-service:
-    ports:
-      - "9002:9002"
-    image: "follow-service:0.0.1-SNAPSHOT"
+#    image: "config-service:0.0.1-SNAPSHOT"
+    image: sundarapandiank/blunt:config-service
 
   sms-service:
     ports:
       - "9003:9003"
-    image: "sms-service:0.0.1-SNAPSHOT"
+#    image: "sms-service:0.0.1-SNAPSHOT"
+    image: sundarapandiank/blunt:sms-service
 
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.6.0
-    container_name: elasticsearch
-    environment:
-      - cluster.name=docker-cluster
-      - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - esdata1:/usr/share/elasticsearch/data
+  email-service:
     ports:
-      - "9200:9200"
+      - "9005:9005"
+#    image: "email-service:0.0.1-SNAPSHOT"
+    image: sundarapandiank/blunt:email-service
 
-  mongodb:
-    image: mongo:3.0.4
+  gateway-service:
     ports:
-      - "27017:27017"
+      - "8765:8765"
+#    image: "gateway-service:0.0.1-SNAPSHOT"
+    image: sundarapandiank/blunt:gateway-service
+
+  authentication-service:
+    ports:
+      - "9008:9008"
+    #    image: "authentication-service:0.0.1-SNAPSHOT"
+    image: sundarapandiank/blunt:authentication-service
+
+  onboard-service:
+    ports:
+      - "9001:9001"
+#    image: "onboard-service:0.0.1-SNAPSHOT"
+    image: sundarapandiank/blunt:onboard-service
+
+  publish-service:
+    ports:
+      - "9004:9004"
+#    image: "publish-service:0.0.1-SNAPSHOT"
+    image: sundarapandiank/blunt:publish-service
+
+  follow-service:
+    ports:
+      - "9002:9002"
+#    image: "follow-service:0.0.1-SNAPSHOT"
+    image: sundarapandiank/blunt:follow-service
+
+
+  metrics-service:
+    ports:
+      - "9006:9006"
+    #    image: "metrics-service:0.0.1-SNAPSHOT"
+    image: sundarapandiank/blunt:metrics-service
+
+  comments-service:
+    ports:
+      - "9007:9007"
+#    image: "follow-service:0.0.1-SNAPSHOT"
+    image: sundarapandiank/blunt:comments-service
+
+
+#  elasticsearch:
+#    image: docker.elastic.co/elasticsearch/elasticsearch:6.6.0
+#    container_name: elasticsearch
+#    environment:
+#      - cluster.name=docker-cluster
+#      - bootstrap.memory_lock=true
+#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#    ulimits:
+#      memlock:
+#        soft: -1
+#        hard: -1
+#    volumes:
+#      - esdata1:/usr/share/elasticsearch/data
+#    ports:
+#      - "9200:9200"
+#
+#  mongodb:
+#    image: mongo:3.0.4
+#    ports:
+#      - "27017:27017"
 

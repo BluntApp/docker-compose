@@ -1,4 +1,4 @@
-version: "3.8"
+version: '3.8'
 
 volumes:
   esdata1:
@@ -7,7 +7,7 @@ volumes:
 services:
   admin-service:
     ports:
-      - "9000:9000"
+    - '9000:9000'
 #    image: "admin-service:0.0.1-SNAPSHOT"
     image: sundarapandiank/blunt:admin-service
 
